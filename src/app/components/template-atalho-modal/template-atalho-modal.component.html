@@ -1,0 +1,45 @@
+<div
+  mat-dialog-title
+  class="header"
+  [class.withBorder]="showHeader"
+>
+  <ng-container *ngIf="showHeader; else noHeader">
+    <div class="header__container">
+      <a
+        href="#"
+        class="link-icon"
+      ></a>
+      <span class="title">
+      {{ title }}
+    </span>
+    </div>
+    <button
+      type="button"
+      class="header__btn-close btn-close"
+      aria-label="Close"
+      (click)="close()"
+    ></button>
+  </ng-container>
+  <ng-template #noHeader>
+    <div class="no-content"></div>
+    <button
+      type="button"
+      class="header__btn-close btn-close"
+      aria-label="Close"
+      (click)="close()"
+    ></button>
+  </ng-template>
+</div>
+
+<mat-dialog-content class="container">
+  <ng-content></ng-content>
+</mat-dialog-content>
+
+<!-- <mat-dialog-actions class="button-actions">
+  <button
+    class="btn btn-sm btn-secondary"
+    (click)="close()"
+  >
+    Fehcar
+  </button>
+</mat-dialog-actions> -->

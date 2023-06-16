@@ -1,10 +1,18 @@
-<table>
-  <tbody>
-    <tr *ngFor="let a of atalhos">
-      <td>{{ a[1] }}</td>
-      <td class="text-right">
-        <kbd>{{ a[0].split('.').join(' + ') }}</kbd>
-      </td>
-    </tr>
-  </tbody>
-</table>
+<template-atalho-modal [showHeader]="false" [title]="title" (close)="dialogRef.close()">
+  <table class="table table-sm">
+    <thead>
+      <tr>
+        <th scope="col">Descrição</th>
+        <th scope="col">Atalho</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let a of atalhos">
+        <td (click)="handleOpenAtalho(a)">{{ a.description }}</td>
+        <td class="text-right">
+          <kbd>{{ a.keys.split('.').join(' + ') }}</kbd>
+        </td>
+      </tr>
+    </tbody>
+  </table>
+</template-atalho-modal>

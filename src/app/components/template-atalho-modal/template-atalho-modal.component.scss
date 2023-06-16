@@ -1,0 +1,45 @@
+.button-actions {
+    display        : flex;
+    justify-content: flex-end;
+    padding-inline : 25px;
+}
+
+.header {
+    display        : flex;
+    justify-content: space-between;
+    align-items    : center;
+    column-gap     : 6px;
+    padding-top    : 1px;
+    padding-bottom : 1px;
+    height         : 35px;
+
+    &.withBorder {
+        border-bottom: 1px solid #1582f3;
+    }
+
+    &::before {
+        content: none;
+    }
+
+    &__container {
+        display        : flex;
+        justify-content: start;
+        align-items    : center;
+
+        a {
+            mask      : url('/assets/svg/icon-link.svg') no-repeat;
+            width     : 30px;
+            height    : 27px;
+            background: #1582f3;
+        }
+
+        span {
+            margin-left: 10px;
+        }
+    }
+
+    &__btn-close {
+        font-size   : 12px;
+        margin-right: -12px;
+    }
+}

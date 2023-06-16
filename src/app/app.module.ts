@@ -1,4 +1,4 @@
-import { NgModule } from '@angular/core';
+import { APP_INITIALIZER, NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 
 import { AppRoutingModule } from './app-routing.module';
@@ -9,13 +9,19 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { MatDialogModule } from '@angular/material/dialog';
 import { AtalhoService } from './services/atalho.service';
 import { AtalhoHelpModalComponent } from './components/atalho-help-modal/atalho-help-modal.component';
+import { TemplateAtalhoModalComponent } from './components/template-atalho-modal/template-atalho-modal.component';
+
+const appInitializer = (atalhoService: AtalhoService) => {
+  atalhoService.startHelperAtalhos();
+}
 
 @NgModule({
   declarations: [
     AppComponent,
     ConsultaClienteComponent,
     AtalhoHelpModalComponent,
-    HelperClienteModalDirective
+    HelperClienteModalDirective,
+    TemplateAtalhoModalComponent
   ],
   imports: [
     BrowserModule,
@@ -23,7 +29,15 @@ import { AtalhoHelpModalComponent } from './components/atalho-help-modal/atalho-
     BrowserAnimationsModule,
     MatDialogModule
   ],
-  providers: [AtalhoService, HelperClienteModalDirective],
+  providers: [
+    {
+      provide: APP_INITIALIZER,
+      useFactory: appInitializer,
+      multi: false,
+      deps: [AtalhoService]
+    },
+    HelperClienteModalDirective
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

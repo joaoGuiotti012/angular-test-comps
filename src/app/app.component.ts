@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+import { AtalhoService } from './services/atalho.service';
 
 @Component({
   selector: 'app-root',
@@ -7,4 +8,12 @@ import { Component } from '@angular/core';
 })
 export class AppComponent {
   title = 'angular-test-comps';
+
+  constructor(private atalhoService: AtalhoService) {
+
+  }
+  
+  openHelperAtalhos() {
+    this.atalhoService.openModalHelper();
+  }
 }

@@ -1,7 +1,7 @@
 
 
 export class Atalho {
-    component!: any;
+    component: any;
     keys!: string;
     description!: string;
 

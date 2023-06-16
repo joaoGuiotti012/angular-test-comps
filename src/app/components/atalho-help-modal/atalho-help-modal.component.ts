@@ -1,6 +1,7 @@
 import { Component, Inject, OnInit } from '@angular/core';
-import { MAT_DIALOG_DATA } from '@angular/material/dialog';
+import { MAT_DIALOG_DATA, MatDialogRef } from '@angular/material/dialog';
 import { Atalho } from '../../models/atalho.model';
+import { AtalhoService } from 'src/app/services/atalho.service';
 
 @Component({
   selector: 'app-atalho-help-modal',
@@ -9,12 +10,21 @@ import { Atalho } from '../../models/atalho.model';
 })
 export class AtalhoHelpModalComponent implements OnInit {
 
-  atalhos = this.data;
+  atalhos = this.data.atalhos;
+  title = this.data.description;
 
-  constructor(@Inject(MAT_DIALOG_DATA) public data: any) { }
+  constructor(
+    public dialogRef: MatDialogRef<AtalhoHelpModalComponent>,
+    private atalhoService: AtalhoService,
+    @Inject(MAT_DIALOG_DATA) public data: any
+  ) { }
 
   ngOnInit() {
     console.log(this.atalhos);
+  }
+
+  handleOpenAtalho(atalho: Atalho) {
+    this.atalhoService.callAtalho(atalho.keys);
   }
 
 }
